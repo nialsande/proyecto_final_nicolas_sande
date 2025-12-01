@@ -12,7 +12,11 @@ public class Articulo {
 
     private String nombre;
     private Double precio;
-    private String imagen;
+    private String imagen; 
+    
+    @ManyToOne
+    @JoinColumn(name = "categoria_id") // FK
+    private Categoria categoria;
 
     public Articulo() {}
 
