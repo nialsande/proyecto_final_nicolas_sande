@@ -1,5 +1,7 @@
 package com.talento.crud.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +18,7 @@ public class Articulo {
     
     @ManyToOne
     @JoinColumn(name = "categoria_id") // FK
+    @JsonBackReference
     private Categoria categoria;
 
     public Articulo() {}

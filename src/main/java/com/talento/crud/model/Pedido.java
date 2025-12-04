@@ -16,7 +16,7 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // private LocalDate fecha = LocalDate.now();
+    private LocalDate fecha = LocalDate.now();
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
@@ -26,14 +26,14 @@ public class Pedido {
 
     public Pedido(Long id, LocalDate fecha, List<PedidoArticulos> articulos) {
         this.id = id;
-        // this.fecha = fecha;
+        this.fecha = fecha;
         this.articulos = articulos;
     }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    // public LocalDate getFecha() { return fecha; }
-    // public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
     public List<PedidoArticulos> getArticulos() { return articulos; }
     public void setArticulos(List<PedidoArticulos> articulos) { this.articulos = articulos; }
 }

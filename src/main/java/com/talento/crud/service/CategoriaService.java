@@ -9,5 +9,5 @@ public interface CategoriaService {
     Optional<Categoria> obtenerCategoriaPorId(Long id);
     Categoria guardarCategoria(Categoria categoria);
     Categoria actualizarCategoria(Long id, Categoria categoria);
-    Categoria eliminarCategoria(Long id, Categoria categoria);// ToDo - Baja logica
+    Categoria eliminarCategoria(Long id);// ToDo - Baja logica
 }

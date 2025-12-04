@@ -33,24 +33,25 @@ public class CategoriaController {
     }
 
     @PostMapping
-    public Categoria crear(@RequestBody Categoria articulo) {
-        return categoriaService.guardarCategoria(articulo);
+    public Categoria crear(@RequestBody Categoria categoria) {
+        return categoriaService.guardarCategoria(categoria);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Categoria> actualizar(@PathVariable Long id, @RequestBody Categoria articulo) {
+    public ResponseEntity<Categoria> actualizar(@PathVariable Long id, @RequestBody Categoria categoria) {
         if (categoriaService.obtenerCategoriaPorId(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(categoriaService.actualizarCategoria(id, articulo));
+        return ResponseEntity.ok(categoriaService.actualizarCategoria(id, categoria));
     }
 
-    // ToDo - deberia cambiar de estado.
     @DeleteMapping("/{id}")
-    public ResponseEntity<Categoria> eliminar(@PathVariable Long id, @RequestBody Categoria articulo) {
-        if (categoriaService.obtenerCategoriaPorId(id).isEmpty()) {
+    public ResponseEntity<Categoria> eliminar(@PathVariable Long id) {
+        try {
+            Categoria categoriaActualizada = categoriaService.eliminarCategoria(id);
+            return ResponseEntity.ok(categoriaActualizada);
+        } catch (RuntimeException ex) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(categoriaService.actualizarCategoria(id, articulo));
     }
 }

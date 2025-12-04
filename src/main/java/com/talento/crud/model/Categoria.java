@@ -2,6 +2,9 @@ package com.talento.crud.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -13,10 +16,12 @@ public class Categoria {
     private Long id;
 
     private String nombre;
-    private Boolean estado;
+    private Boolean estado = true;
 
-    @OneToMany(mappedBy = "categoria")
-    private List<Articulo> articulos;
+    // @OneToMany(mappedBy = "categoria")
+    // @JsonManagedReference
+    // // @JsonIgnore
+    // private List<Articulo> articulos;
 
     public Categoria() {}
 
@@ -32,4 +37,6 @@ public class Categoria {
     public void setNombre(String nombre) { this.nombre = nombre; }
     public Boolean getEstado() { return estado; }
     public void setEstado(Boolean estado) { this.estado = estado; }
+    // public List<Articulo> getArticulos() { return articulos; }
+    // public void setArticulos(List<Articulo> articulos) { this.articulos = articulos; }
 }

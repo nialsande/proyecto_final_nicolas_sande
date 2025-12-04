@@ -1,8 +1,11 @@
 package com.talento.crud.controller;
 
+import com.talento.crud.dto.ApiResponse;
 import com.talento.crud.model.Pedido;
+import com.talento.crud.model.PedidoArticulos;
 import com.talento.crud.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,9 +36,12 @@ public class PedidoController {
     }
 
     @PostMapping
-    public Pedido crear(@RequestBody Pedido pedido) {
-        return pedidoService.guardarPedido(pedido);
+    public ResponseEntity<ApiResponse> crear(@RequestBody Pedido pedido) {
+        Pedido nuevo = pedidoService.guardarPedido(pedido);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new ApiResponse("Pedido creado correctamente", nuevo));
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Pedido> actualizar(@PathVariable Long id, @RequestBody Pedido pedido) {

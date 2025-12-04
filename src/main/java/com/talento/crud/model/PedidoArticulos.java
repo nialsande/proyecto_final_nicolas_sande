@@ -1,6 +1,7 @@
 package com.talento.crud.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 
@@ -10,7 +11,8 @@ public class PedidoArticulos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; // Mucho más simple que usar clave compuesta
+    @JsonIgnore
+    private Long id; 
 
     @ManyToOne
     @JoinColumn(name = "pedido_id")

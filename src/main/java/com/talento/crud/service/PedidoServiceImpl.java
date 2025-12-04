@@ -28,7 +28,16 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public Pedido guardarPedido(Pedido pedido) {
-        return pedidoRepository.save(pedido);
+        // return pedidoRepository.save(pedido);
+        if (pedido.getArticulos() != null) {
+            pedido.getArticulos().forEach(pa -> pa.setPedido(pedido));
+        }
+
+        Pedido saved = pedidoRepository.save(pedido);
+
+        // ahora buscar con fetch join para devolver objeto completamente inicializado
+        return pedidoRepository.findByIdWithArticulos(saved.getId())
+                .orElse(saved); // fallback por las dudas
     }
 
     @Override
