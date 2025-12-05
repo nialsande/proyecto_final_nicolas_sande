@@ -2,7 +2,6 @@ package com.talento.crud.controller;
 
 import com.talento.crud.dto.ApiResponse;
 import com.talento.crud.model.Pedido;
-import com.talento.crud.model.PedidoArticulos;
 import com.talento.crud.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -58,5 +57,16 @@ public class PedidoController {
         }
         pedidoService.eliminarPedido(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    
+
+    @GetMapping("/listar")
+    public ResponseEntity<?> listar(@RequestParam(required = false) Long id) {
+
+        return pedidoService.obtenerPedidoPorIdNull(id)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
     }
 }

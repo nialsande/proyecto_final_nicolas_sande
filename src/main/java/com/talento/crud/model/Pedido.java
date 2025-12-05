@@ -1,7 +1,6 @@
 package com.talento.crud.model;
 
 import java.time.LocalDate;
-// import java.time.LocalDate;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -21,6 +20,8 @@ public class Pedido {
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private List<PedidoArticulos> articulos;
+
+    // podria manejar estado 
 
     public Pedido() {}
 

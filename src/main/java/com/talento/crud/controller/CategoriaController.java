@@ -54,4 +54,10 @@ public class CategoriaController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    //Filtros -- Ruteo ??
+    @GetMapping("/buscar")
+    public List<Categoria> buscar(@RequestParam(required = false) Boolean estado) {
+        return categoriaService.listarCategoriasPorEstado(estado);
+    } 
 }

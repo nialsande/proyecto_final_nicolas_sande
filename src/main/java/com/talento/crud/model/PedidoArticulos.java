@@ -25,6 +25,8 @@ public class PedidoArticulos {
 
     private int cantidad;
 
+    // tambien podria manejar precio unitario - se mantiene el precio final en el tiempo
+
     public PedidoArticulos() {}
 
     public PedidoArticulos(Long id, Pedido pedido, Articulo articulo, int cantidad) {

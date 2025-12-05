@@ -1,6 +1,6 @@
 package com.talento.crud.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 
@@ -17,8 +17,8 @@ public class Articulo {
     private String imagen; 
     
     @ManyToOne
-    @JoinColumn(name = "categoria_id") // FK
-    @JsonBackReference
+    @JoinColumn(name = "categoria_id", nullable = false)
+    @JsonIgnoreProperties("articulos")
     private Categoria categoria;
 
     public Articulo() {}
@@ -37,5 +37,7 @@ public class Articulo {
     public Double getPrecio() { return precio; }
     public void setPrecio(Double precio) { this.precio = precio; }
     public String getImagen() { return imagen; }
-    public void setImagen(String imagen) { this.imagen = imagen;} 
+    public void setImagen(String imagen) { this.imagen = imagen; } 
+    public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) {this.categoria = categoria; }
 }

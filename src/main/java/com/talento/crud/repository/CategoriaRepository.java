@@ -2,13 +2,14 @@ package com.talento.crud.repository;
 
 import com.talento.crud.model.Categoria;
 
-// Importamos JpaRepository, que nos da los métodos CRUD listos
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-// Importamos la anotación @Repository que marca esta interfaz como componente de acceso a datos
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
+
+    List<Categoria> findAllByEstado(Boolean estado);
     
 }

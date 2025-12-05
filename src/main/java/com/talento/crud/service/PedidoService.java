@@ -10,4 +10,6 @@ public interface PedidoService {
     Pedido guardarPedido(Pedido pedido);
     Pedido actualizarPedido(Long id, Pedido pedido);
     void eliminarPedido(Long id);
+
+    Optional<?> obtenerPedidoPorIdNull(Long id);
 }

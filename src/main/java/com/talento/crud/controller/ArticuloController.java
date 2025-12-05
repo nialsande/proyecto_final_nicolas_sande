@@ -53,5 +53,13 @@ public class ArticuloController {
         articuloService.eliminarArticulo(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/categoria")
+    public List<Articulo> listar(@RequestParam(required = false) Long categoriaId) {
+    if (categoriaId == null) {
+        return articuloService.listarArticulos();
+    }
+    return articuloService.listarArticulosPorCategoria(categoriaId);
+}
 }
 

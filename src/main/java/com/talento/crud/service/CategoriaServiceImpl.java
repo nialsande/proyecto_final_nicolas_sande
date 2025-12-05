@@ -35,12 +35,16 @@ public class CategoriaServiceImpl implements CategoriaService {
         return categoriaRepository.save(categoria);
     }
 
-    // ToDo - Baja logica
     public Categoria eliminarCategoria(Long id) {
         Categoria categoria = categoriaRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Categoría no encontrada"));
 
         categoria.setEstado(false);
         return categoriaRepository.save(categoria);
+    }
+
+    @Override
+    public List<Categoria> listarCategoriasPorEstado(Boolean estado) {
+        return categoriaRepository.findAllByEstado(estado);
     }
 }

@@ -28,7 +28,10 @@ public class ArticuloServiceImpl implements ArticuloService {
     }
 
     public Articulo guardarArticulo(Articulo articulo) {
-        return articuloRepository.save(articulo);
+        Articulo saved = articuloRepository.save(articulo);
+
+        return articuloRepository.findByIdWithCategoria(saved.getId())
+                .orElse(saved);
     }
 
     public Articulo actualizarArticulo(Long id, Articulo articulo) {
@@ -38,5 +41,11 @@ public class ArticuloServiceImpl implements ArticuloService {
 
     public void eliminarArticulo(Long id) {
         articuloRepository.deleteById(id);
+    }
+
+
+    @Override
+    public List<Articulo> listarArticulosPorCategoria(Long categoriaId) {
+        return articuloRepository.findAllByCategoriaId(categoriaId);
     }
 }
